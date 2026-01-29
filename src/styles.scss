@@ -1,0 +1,170 @@
+@use '@carbon/styles/scss/themes' as *;
+@use '@carbon/styles/scss/theme' with ($theme: $white);
+@use '@carbon/styles';
+@use '@carbon/styles/scss/spacing' as *;
+@use '@carbon/styles/scss/type' as *;
+@use '@carbon/styles/scss/theme' as *;
+
+.page-content {
+  padding: $spacing-07;
+  
+  h1 {
+    padding-block-end: $spacing-05;
+  }
+  
+  h2 {
+    padding-block: $spacing-05;
+  }
+}
+
+.form-section {
+  margin-block-end: $spacing-07;
+  padding-block-end: $spacing-07;
+  border-bottom: 1px solid var(--cds-border-subtle);
+}
+
+.input-row {
+  display: flex;
+  gap: $spacing-05;
+  margin-block-end: $spacing-05;
+}
+
+.button-section {
+  margin-block-start: $spacing-06;
+  display: flex;
+  align-items: center;
+  gap: $spacing-05;
+}
+
+.map-section {
+  margin-block-start: $spacing-07;
+  padding-block-start: $spacing-07;
+}
+
+.results-container {
+  display: flex;
+  gap: $spacing-07;
+  margin-block-start: $spacing-06;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.heatmap-wrapper {
+  flex: 1;
+  min-width: 0;
+}
+
+.table-wrapper {
+  flex: 0 0 400px;
+  
+  @media (max-width: 768px) {
+    flex: 1;
+  }
+}
+
+.region-link {
+  background: none;
+  border: none;
+  color: var(--cds-link-primary);
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+  text-align: left;
+  
+  &:hover {
+    color: var(--cds-link-primary-hover);
+  }
+  
+  &:focus {
+    outline: 2px solid var(--cds-focus);
+    outline-offset: 2px;
+  }
+}
+
+.generation-mix-table {
+  margin-block-start: $spacing-05;
+}
+
+.heatmap-container {
+  margin-block-start: $spacing-06;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-06;
+}
+
+.uk-map {
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+  border: 2px solid var(--cds-border-strong);
+  border-radius: 4px;
+  background-color: var(--cds-layer-01);
+  padding: $spacing-03;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.region-group-clickable {
+  cursor: pointer;
+}
+
+.region-group {
+  cursor: default;
+}
+
+.region-rect {
+  transition: opacity 0.2s ease;
+  
+  .region-group-clickable & {
+    cursor: pointer;
+    
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.legend {
+  width: 100%;
+  max-width: 400px;
+  padding: $spacing-05;
+  background-color: var(--cds-layer-01);
+  border-radius: 4px;
+}
+
+.legend-title {
+  @include type-style('heading-compact-01');
+  margin-block-end: $spacing-03;
+  text-align: center;
+}
+
+.legend-scale {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-02;
+}
+
+.legend-gradient {
+  height: 20px;
+  background: linear-gradient(to right,
+    rgb(100, 180, 80),
+    rgb(180, 220, 80),
+    rgb(255, 255, 80),
+    rgb(255, 180, 40),
+    rgb(255, 155, 0)
+  );
+  border-radius: 4px;
+  border: 1px solid var(--cds-border-subtle);
+}
+
+.legend-labels {
+  display: flex;
+  justify-content: space-between;
+  @include type-style('label-01');
+  color: var(--cds-text-secondary);
+}
+
+// Made with Bob
