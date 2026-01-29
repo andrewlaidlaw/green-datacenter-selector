@@ -61,11 +61,47 @@ function App() {
   const [generationMix, setGenerationMix] = useState(null);
   const [mixLoading, setMixLoading] = useState(false);
   const [helpModalOpen, setHelpModalOpen] = useState(false);
+  const [lastCalculateTime, setLastCalculateTime] = useState(0);
+  const [lastRegionClickTime, setLastRegionClickTime] = useState(0);
+
+  // Rate limiting constants (in milliseconds)
+  const CALCULATE_COOLDOWN = 2000; // 2 seconds between calculations
+  const REGION_CLICK_COOLDOWN = 1000; // 1 second between region clicks
+
+  // Input validation function
+  const validateInputs = () => {
+    // Validate cores
+    if (!Number.isInteger(cores) || cores < 1 || cores > 128) {
+      setError('Invalid number of cores. Must be an integer between 1 and 128.');
+      return false;
+    }
+    
+    // Validate memory
+    if (!Number.isInteger(memoryGb) || memoryGb < 1 || memoryGb > 1024) {
+      setError('Invalid memory amount. Must be an integer between 1 and 1024 GB.');
+      return false;
+    }
+    
+    return true;
+  };
 
   const fetchGenerationMix = async (regionName) => {
+    // Rate limiting check
+    const now = Date.now();
+    if (now - lastRegionClickTime < REGION_CLICK_COOLDOWN) {
+      return; // Silently ignore rapid clicks
+    }
+    setLastRegionClickTime(now);
+
     setMixLoading(true);
     try {
       const regionId = regionNameToId[regionName];
+      
+      // Validate regionId exists
+      if (!regionId) {
+        throw new Error('Invalid region selected');
+      }
+      
       const response = await fetch(`https://api.carbonintensity.org.uk/regional/regionid/${regionId}`);
       
       if (!response.ok) {
@@ -126,6 +162,19 @@ function App() {
   };
 
   const calculateCO2 = async () => {
+    // Rate limiting check
+    const now = Date.now();
+    if (now - lastCalculateTime < CALCULATE_COOLDOWN) {
+      setError(`Please wait ${Math.ceil((CALCULATE_COOLDOWN - (now - lastCalculateTime)) / 1000)} seconds before calculating again.`);
+      return;
+    }
+    
+    // Input validation
+    if (!validateInputs()) {
+      return;
+    }
+    
+    setLastCalculateTime(now);
     setLoading(true);
     setError(null);
     
