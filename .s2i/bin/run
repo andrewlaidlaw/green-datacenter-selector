@@ -1,0 +1,7 @@
+#!/bin/bash -e
+#
+# S2I run script for Node.js applications
+# This script is responsible for running the application
+
+echo "---> Starting application"
+exec npm start

@@ -1,0 +1,13 @@
+#!/bin/bash -e
+#
+# S2I assemble script for Node.js applications
+# This script is responsible for building the application artifacts
+
+echo "---> Installing application dependencies"
+npm ci --only=production
+
+echo "---> Building application from source"
+npm run build
+
+echo "---> Fixing permissions"
+fix-permissions ./

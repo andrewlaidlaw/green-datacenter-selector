@@ -1,50 +1,45 @@
-@use '@carbon/styles/scss/themes' as *;
-@use '@carbon/styles/scss/theme' with ($theme: $white);
-@use '@carbon/styles';
-@use '@carbon/styles/scss/spacing' as *;
-@use '@carbon/styles/scss/type' as *;
-@use '@carbon/styles/scss/theme' as *;
+@use '@carbon/react';
 
 .page-content {
-  padding: $spacing-07;
+  padding: 2rem;
   
   h1 {
-    padding-block-end: $spacing-05;
+    padding-block-end: 1rem;
   }
   
   h2 {
-    padding-block: $spacing-05;
+    padding-block: 1rem;
   }
 }
 
 .form-section {
-  margin-block-end: $spacing-07;
-  padding-block-end: $spacing-07;
+  margin-block-end: 2rem;
+  padding-block-end: 2rem;
   border-bottom: 1px solid var(--cds-border-subtle);
 }
 
 .input-row {
   display: flex;
-  gap: $spacing-05;
-  margin-block-end: $spacing-05;
+  gap: 1rem;
+  margin-block-end: 1rem;
 }
 
 .button-section {
-  margin-block-start: $spacing-06;
+  margin-block-start: 1.5rem;
   display: flex;
   align-items: center;
-  gap: $spacing-05;
+  gap: 1rem;
 }
 
 .map-section {
-  margin-block-start: $spacing-07;
-  padding-block-start: $spacing-07;
+  margin-block-start: 2rem;
+  padding-block-start: 2rem;
 }
 
 .results-container {
   display: flex;
-  gap: $spacing-07;
-  margin-block-start: $spacing-06;
+  gap: 2rem;
+  margin-block-start: 1.5rem;
   
   @media (max-width: 768px) {
     flex-direction: column;
@@ -85,15 +80,15 @@
 }
 
 .generation-mix-table {
-  margin-block-start: $spacing-05;
+  margin-block-start: 1rem;
 }
 
 .heatmap-container {
-  margin-block-start: $spacing-06;
+  margin-block-start: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: $spacing-06;
+  gap: 1.5rem;
 }
 
 .uk-map {
@@ -103,7 +98,7 @@
   border: 2px solid var(--cds-border-strong);
   border-radius: 4px;
   background-color: var(--cds-layer-01);
-  padding: $spacing-03;
+  padding: 0.5rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -130,21 +125,22 @@
 .legend {
   width: 100%;
   max-width: 400px;
-  padding: $spacing-05;
+  padding: 1rem;
   background-color: var(--cds-layer-01);
   border-radius: 4px;
 }
 
 .legend-title {
-  @include type-style('heading-compact-01');
-  margin-block-end: $spacing-03;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-block-end: 0.5rem;
   text-align: center;
 }
 
 .legend-scale {
   display: flex;
   flex-direction: column;
-  gap: $spacing-02;
+  gap: 0.25rem;
 }
 
 .legend-gradient {
@@ -163,7 +159,7 @@
 .legend-labels {
   display: flex;
   justify-content: space-between;
-  @include type-style('label-01');
+  font-size: 0.75rem;
   color: var(--cds-text-secondary);
 }
 

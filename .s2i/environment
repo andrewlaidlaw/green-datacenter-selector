@@ -1,0 +1,12 @@
+# Node.js version
+NODE_VERSION=18
+
+# Build environment
+NPM_CONFIG_LOGLEVEL=info
+NODE_ENV=production
+
+# Output directory for built files
+OUTPUT_DIR=dist
+
+# Port for the application
+PORT=8080
