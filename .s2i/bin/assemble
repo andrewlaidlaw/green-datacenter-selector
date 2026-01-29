@@ -4,7 +4,7 @@
 # This script is responsible for building the application artifacts
 
 echo "---> Installing application dependencies"
-npm ci --only=production
+npm ci --omit=dev
 
 echo "---> Building application from source"
 npm run build
