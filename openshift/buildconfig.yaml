@@ -17,7 +17,7 @@ spec:
     sourceStrategy:
       from:
         kind: ImageStreamTag
-        name: nodejs:18-ubi8
+        name: nodejs:22-ubi9
         namespace: openshift
       env:
       - name: NODE_ENV

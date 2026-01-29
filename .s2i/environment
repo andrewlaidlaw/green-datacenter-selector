@@ -1,5 +1,5 @@
 # Node.js version
-NODE_VERSION=18
+NODE_VERSION=22
 
 # Build environment
 NPM_CONFIG_LOGLEVEL=info
