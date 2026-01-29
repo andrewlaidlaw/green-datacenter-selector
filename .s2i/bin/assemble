@@ -18,15 +18,15 @@ fi
 echo "---> Listing files after copy:"
 ls -la
 
-echo "---> Installing application dependencies"
+echo "---> Installing application dependencies (including dev dependencies for build)"
 if [ -f package.json ]; then
   echo "Found package.json"
   if [ -f package-lock.json ]; then
     echo "Found package-lock.json, using npm ci"
-    npm ci --omit=dev
+    npm ci
   else
     echo "No package-lock.json found, using npm install"
-    npm install --omit=dev
+    npm install
   fi
 else
   echo "ERROR: package.json not found!"
@@ -35,6 +35,9 @@ fi
 
 echo "---> Building application from source"
 npm run build
+
+echo "---> Pruning dev dependencies"
+npm prune --omit=dev
 
 echo "---> Fixing permissions"
 fix-permissions ./
