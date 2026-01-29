@@ -5,7 +5,17 @@
 
 echo "---> S2I assemble script starting"
 echo "---> Current directory: $(pwd)"
-echo "---> Listing files:"
+
+# Copy source files from /tmp/src to current directory
+if [ -d /tmp/src ]; then
+  echo "---> Copying source files from /tmp/src"
+  cp -Rf /tmp/src/. ./
+else
+  echo "ERROR: /tmp/src directory not found!"
+  exit 1
+fi
+
+echo "---> Listing files after copy:"
 ls -la
 
 echo "---> Installing application dependencies"
