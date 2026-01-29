@@ -3,13 +3,24 @@
 # S2I assemble script for Node.js applications
 # This script is responsible for building the application artifacts
 
+echo "---> S2I assemble script starting"
+echo "---> Current directory: $(pwd)"
+echo "---> Listing files:"
+ls -la
+
 echo "---> Installing application dependencies"
-if [ -f package-lock.json ]; then
-  echo "Found package-lock.json, using npm ci"
-  npm ci --omit=dev
+if [ -f package.json ]; then
+  echo "Found package.json"
+  if [ -f package-lock.json ]; then
+    echo "Found package-lock.json, using npm ci"
+    npm ci --omit=dev
+  else
+    echo "No package-lock.json found, using npm install"
+    npm install --omit=dev
+  fi
 else
-  echo "No package-lock.json found, using npm install"
-  npm install --omit=dev
+  echo "ERROR: package.json not found!"
+  exit 1
 fi
 
 echo "---> Building application from source"
