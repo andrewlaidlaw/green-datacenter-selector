@@ -4,7 +4,13 @@
 # This script is responsible for building the application artifacts
 
 echo "---> Installing application dependencies"
-npm ci --omit=dev
+if [ -f package-lock.json ]; then
+  echo "Found package-lock.json, using npm ci"
+  npm ci --omit=dev
+else
+  echo "No package-lock.json found, using npm install"
+  npm install --omit=dev
+fi
 
 echo "---> Building application from source"
 npm run build
