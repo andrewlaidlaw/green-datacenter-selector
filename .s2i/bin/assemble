@@ -33,8 +33,11 @@ else
   exit 1
 fi
 
-echo "---> Building application from source"
-npm run build
+echo "---> Checking if vite is installed"
+npm list vite || echo "Vite not found in dependencies"
+
+echo "---> Building application from source using npx"
+npx vite build
 
 echo "---> Pruning dev dependencies"
 npm prune --omit=dev
