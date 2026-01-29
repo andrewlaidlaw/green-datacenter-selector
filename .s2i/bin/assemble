@@ -18,7 +18,7 @@ fi
 echo "---> Listing files after copy:"
 ls -la
 
-echo "---> Installing application dependencies (including dev dependencies for build)"
+echo "---> Installing application dependencies"
 if [ -f package.json ]; then
   echo "Found package.json"
   if [ -f package-lock.json ]; then
@@ -36,11 +36,8 @@ fi
 echo "---> Checking if vite is installed"
 npm list vite || echo "Vite not found in dependencies"
 
-echo "---> Building application from source using npx"
-npx vite build
-
-echo "---> Pruning dev dependencies"
-npm prune --omit=dev
+echo "---> Building application from source"
+npm run build
 
 echo "---> Fixing permissions"
 fix-permissions ./
