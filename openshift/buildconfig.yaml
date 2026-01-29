@@ -1,0 +1,29 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: green-datacenter-selector
+  labels:
+    app: green-datacenter-selector
+    app.kubernetes.io/name: green-datacenter-selector
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: green-datacenter-selector:latest
+  source:
+    type: Git
+    git:
+      uri: https://github.com/andrewlaidlaw/green-datacenter-selector.git
+      ref: main
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile
+  triggers:
+  - type: ConfigChange
+  - type: GitHub
+    github:
+      secret: github-webhook-secret
+  - type: ImageChange
+
+# Made with Bob
