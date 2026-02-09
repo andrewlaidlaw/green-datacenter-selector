@@ -179,3 +179,7 @@ For questions or suggestions, please open an issue on GitHub.
 - Carbon intensity data provided by [National Grid ESO](https://carbonintensity.org.uk/)
 - UI components from [IBM Carbon Design System](https://carbondesignsystem.com/)
 - UK map visualization inspired by regional electricity data
+
+---
+
+Creation assisted by IBM Bob
